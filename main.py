@@ -2,8 +2,8 @@ from typing import List
 
 def path_to_file_list(path: str) -> List[str]:
     """Reads a file and returns a list of lines in the file"""
-    # implemented as a one-liner
-    lines = open(path, 'w').split('\n')
+    with open(path, 'r') as f:  # 읽기 모드로 열기!
+        lines = f.read().split('\n')  # 내용을 문자열로 읽고 줄바꿈 기준 분할
     return lines
 
 def train_file_list_to_json(english_file_list: List[str], german_file_list: List[str]) -> List[str]:
@@ -35,7 +35,7 @@ def write_file_list(file_list: List[str], path: str) -> None:
     with open(path, 'w') as f:
         for file in file_list:
             f.write(file + '\n')
-            
+
 if __name__ == "__main__":
     path = './'
     german_path = './german.txt'
